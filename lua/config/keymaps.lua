@@ -35,3 +35,9 @@ vim.keymap.set("n", "<leader>cb", function()
   end
   is_block = not is_block
 end, { desc = "Toggle Cursor Style" })
+
+vim.keymap.set("n", "<leader>uj", function()
+  vim.g.diagnostics_hover_enabled = not vim.g.diagnostics_hover_enabled
+  local msg = vim.g.diagnostics_hover_enabled and "Enabled" or "Disabled"
+  vim.notify("Diagnostics hover: " .. msg, vim.log.levels.INFO, { title = "LSP Hover" })
+end, { desc = "Toggle diagnostics hover on cursor" })
