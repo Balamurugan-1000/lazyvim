@@ -23,13 +23,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
-vim.cmd([[
-  autocmd CursorHold * lua vim.lsp.buf.document_highlight()
-  autocmd CursorMoved * lua vim.lsp.buf.clear_references()
-]])
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-  max_width = 80,
-  max_height = 20,
-})
+-- vim.cmd([[
+--   autocmd CursorHold * lua vim.lsp.buf.document_highlight()
+--   autocmd CursorMoved * lua vim.lsp.buf.clear_references()
+-- ]])
