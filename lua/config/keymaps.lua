@@ -88,3 +88,16 @@ end, { desc = "Previous Error" })
 map("n", "]e", function()
   require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Next Error" })
+
+-- Track closed buffer before deleting
+local bufremove = require("mini.bufremove")
+local buffer_history = require("util.buffer_history")
+
+vim.keymap.set("n", "<leader>bd", function()
+  buffer_history.on_buf_delete(0)
+  bufremove.delete(0, false)
+end, { desc = "Delete Buffer" })
+
+vim.keymap.set("n", "<leader>bu", function()
+  require("util.buffer_history").reopen_last_buffer()
+end, { desc = "Reopen Last Closed Buffer" })

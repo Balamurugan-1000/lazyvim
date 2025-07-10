@@ -32,18 +32,15 @@ return {
       { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
       { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git Status" },
 
-      -- 📂 File Browser (if installed)
-
-      -- 🕘 Undo Tree (if installed)
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo History" },
     },
     config = function()
       require("telescope").setup({
         defaults = {
           layout_strategy = "horizontal",
-          sorting_strategy = "ascending",
+          sorting_strategy = "descending",
           layout_config = {
-            prompt_position = "top",
+            prompt_position = "bottom",
           },
         },
       })
