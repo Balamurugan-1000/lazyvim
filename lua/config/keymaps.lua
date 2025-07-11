@@ -11,6 +11,7 @@ map("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
 map("n", "<leader>xh", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true, silent = true })
 
 -- map("n", "<C-w>", ":bd<CR>", { desc = "Close buffer", noremap = true, silent = true })
+map("i", "jj", "<ESC>", { desc = "To normal mode", noremap = true, silent = true })
 
 map("n", "<leader>c", '"+y', { desc = "Copy to Clipboard" })
 

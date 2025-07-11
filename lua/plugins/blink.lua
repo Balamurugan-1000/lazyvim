@@ -65,17 +65,13 @@ return {
     },
     sources = {
       default = { "lsp", "buffer", "snippets", "path" },
-      per_filetype = {
-        sql = { "dadbod" },
-        lua = { inherit_defaults = true, "lazydev" },
-      },
-      providers = {
-        dadbod = { module = "vim_dadbod_completion.blink" },
-      },
+      -- per_filetype = {
+      --   lua = { inherit_defaults = true, "lazydev" },
+      -- },
     },
     cmdline = {
-      enabled = true,
-      keymap = { preset = "inherit" },
+      enabled = false,
+      keymap = { preset = "enter" },
       completion = { menu = { auto_show = true } },
     },
 
