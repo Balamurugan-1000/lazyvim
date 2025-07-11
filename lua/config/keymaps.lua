@@ -8,6 +8,8 @@ local opts = { noremap = true, silent = true }
 
 map("n", "<leader>;", ":lua Snacks.dashboard() <CR>", opts)
 map("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Select entire buffer" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Select entire buffer" })
 map("n", "<leader>xh", ":nohlsearch<CR>", { desc = "Clear search highlights", noremap = true, silent = true })
 
 -- map("n", "<C-w>", ":bd<CR>", { desc = "Close buffer", noremap = true, silent = true })

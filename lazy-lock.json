@@ -5,6 +5,7 @@
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "catppuccin": { "branch": "main", "commit": "fa42eb5e26819ef58884257d5ae95dd0552b9a66" },
   "conform.nvim": { "branch": "master", "commit": "973f3cb73887d510321653044791d7937c7ec0fa" },
+  "django-plus.vim": { "branch": "master", "commit": "220cfbc03e89c636606f0f4bc89f8135be5f765e" },
   "dracula.nvim": { "branch": "main", "commit": "96c9d19ce81b26053055ad6f688277d655b3f7d2" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
@@ -48,7 +49,9 @@
   "tokyonight.nvim": { "branch": "main", "commit": "057ef5d260c1931f1dffd0f052c685dcd14100a3" },
   "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" },
+  "ultisnips": { "branch": "master", "commit": "b22a86f9dcc5257624bff3c72d8b902eac468aad" },
   "vim-nightfly-colors": { "branch": "master", "commit": "8c55003e89f321a48a8cd4bb426dd3e7c58f0646" },
+  "vim-snippets": { "branch": "master", "commit": "f0a3184d9f90b96b044d5914625a25c554d7f301" },
   "vim-tmux-navigator": { "branch": "master", "commit": "412c474e97468e7934b9c217064025ea7a69e05e" },
   "vim-visual-multi": { "branch": "master", "commit": "a6975e7c1ee157615bbc80fc25e4392f71c344d4" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }

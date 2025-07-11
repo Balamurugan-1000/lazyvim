@@ -9,7 +9,15 @@ return {
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = false },
+    picker = {
+      enabled = false,
+      sources = {
+        explorer = {
+          hidden = true, -- 👈 show hidden dotfiles
+          ignored = true, -- 👈 show .gitignored files
+        },
+      },
+    },
     notifier = { enabled = false },
     quickfile = { enabled = true },
     scope = { enabled = true },
