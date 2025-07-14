@@ -15,11 +15,16 @@ map("n", "<leader>xh", ":nohlsearch<CR>", { desc = "Clear search highlights", no
 -- map("n", "<C-w>", ":bd<CR>", { desc = "Close buffer", noremap = true, silent = true })
 map("i", "jj", "<ESC>", { desc = "To normal mode", noremap = true, silent = true })
 
-map("n", "<leader>c", '"+y', { desc = "Copy to Clipboard" })
-
+map("n", "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", opts)
+map("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", opts)
+map("n", "<C-d>", "<Plug>(VM-Find-Under)", opts)
+map("v", "<C-d>", "<Plug>(VM-Find-Subword-Under)", opts)
 map("n", "<leader>w", ":w<CR>", opts)
-map("n", "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", opts) -- Add cursor in next line
-map("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", opts) -- Add cursor in previous line
+-- map("n", "<C-d>", "<Plug>(VM-Find-Under)", opts)
+-- map("v", "<C-d>", "<Plug>(VM-Find-Subword-Under)", opts)
+
+-- map("n", "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", opts) -- Add cursor in next line
+-- map("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", opts) -- Add cursor in previous line
 map("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 
 map("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
@@ -104,3 +109,15 @@ end, { desc = "Delete Buffer" })
 vim.keymap.set("n", "<leader>bu", function()
   require("util.buffer_history").reopen_last_buffer()
 end, { desc = "Reopen Last Closed Buffer" })
+
+-- Don't yank with x, c, C, s, S, d, D
+local keys = { "x", "c", "C", "s", "S", "d", "D" }
+
+for _, key in ipairs(keys) do
+  vim.keymap.set("n", key, '"_' .. key, { noremap = true, silent = true })
+end
+
+-- Also for visual mode
+for _, key in ipairs({ "x", "d", "c" }) do
+  vim.keymap.set("v", key, '"_' .. key, { noremap = true, silent = true })
+end

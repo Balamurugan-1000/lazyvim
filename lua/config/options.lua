@@ -9,3 +9,4 @@ vim.opt.guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20"
 if vim.loader then
   vim.loader.enable()
 end
+vim.opt.foldenable = false

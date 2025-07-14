@@ -24,7 +24,7 @@ return {
     lsp = {
       hover = {
         enabled = true,
-        silent = false,
+        silent = true,
         opts = {
           border = "rounded", -- ✅ Add border to LSP hover
         },

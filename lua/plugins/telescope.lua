@@ -70,4 +70,6 @@ return {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo History" },
     },
   },
+
+  -- LazyVim plugin
 }

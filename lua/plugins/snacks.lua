@@ -10,7 +10,8 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     picker = {
-      enabled = false,
+      enabled = true,
+      backend = "telescope", -- 👈 USE TELESCOPE UI
       sources = {
         explorer = {
           hidden = true, -- 👈 show hidden dotfiles
