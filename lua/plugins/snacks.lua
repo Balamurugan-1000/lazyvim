@@ -5,17 +5,22 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = { enabled = false },
     explorer = { enabled = true },
     indent = { enabled = true },
-    input = { enabled = true },
+    input = {
+      enabled = true,
+      win_opts = {
+        row = vim.o.lines - 4, -- place 4 lines from the bottom
+      },
+    },
     picker = {
       enabled = true,
       backend = "telescope", -- 👈 USE TELESCOPE UI
       sources = {
         explorer = {
-          hidden = true, -- 👈 show hidden dotfiles
-          ignored = true, -- 👈 show .gitignored files
+          -- hidden = true, -- 👈 show hidden dotfiles
+          -- ignored = true, -- 👈 show .gitignored files
         },
       },
     },

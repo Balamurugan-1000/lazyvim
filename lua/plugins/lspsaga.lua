@@ -85,8 +85,6 @@ return {
       },
       hover = {
         max_width = 0.6,
-        open_link = "gx",
-        open_cmd = "!xdg-open", -- or "silent !open" on macOS
       },
       diagnostic = {
         show_code_action = true,

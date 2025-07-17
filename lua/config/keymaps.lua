@@ -6,6 +6,37 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+-- 🔁 Restart LSP and reload buffer
+map("n", "<leader>lR", function()
+  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  for _, client in ipairs(clients) do
+    vim.lsp.buf_detach_client(0, client.id)
+  end
+  vim.cmd("edit")
+  vim.defer_fn(function()
+    vim.cmd("LspRestart")
+  end, 100)
+end, vim.tbl_extend("force", opts, { desc = "LSP Restart + Reload Buffer" }))
+
+-- 🔃 Refresh diagnostics and open quickfix
+map("n", "<leader>lD", function()
+  vim.diagnostic.reset()
+  vim.diagnostic.setqflist()
+  vim.cmd("copen")
+end, vim.tbl_extend("force", opts, { desc = "Refresh Diagnostics + Show Quickfix" }))
+
+-- 🌳 Reattach Treesitter highlight
+map("n", "<leader>lt", function()
+  vim.cmd("TSBufDisable highlight")
+  vim.cmd("TSBufEnable highlight")
+end, vim.tbl_extend("force", opts, { desc = "Reattach Treesitter Highlight" }))
+
+-- 🧼 Clear LSP diagnostics and highlights
+map("n", "<leader>lc", function()
+  vim.diagnostic.reset()
+  vim.lsp.buf.clear_references()
+end, vim.tbl_extend("force", opts, { desc = "Clear Diagnostics + Highlights" }))
+
 map("n", "<leader>;", ":lua Snacks.dashboard() <CR>", opts)
 map("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Select entire buffer" })
@@ -20,11 +51,6 @@ map("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", opts)
 map("n", "<C-d>", "<Plug>(VM-Find-Under)", opts)
 map("v", "<C-d>", "<Plug>(VM-Find-Subword-Under)", opts)
 map("n", "<leader>w", ":w<CR>", opts)
--- map("n", "<C-d>", "<Plug>(VM-Find-Under)", opts)
--- map("v", "<C-d>", "<Plug>(VM-Find-Subword-Under)", opts)
-
--- map("n", "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", opts) -- Add cursor in next line
--- map("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", opts) -- Add cursor in previous line
 map("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 
 map("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
@@ -110,14 +136,17 @@ vim.keymap.set("n", "<leader>bu", function()
   require("util.buffer_history").reopen_last_buffer()
 end, { desc = "Reopen Last Closed Buffer" })
 
--- Don't yank with x, c, C, s, S, d, D
-local keys = { "x", "c", "C", "s", "S", "d", "D" }
+-- -- Don't yank with x, c, C, s, S, d, D
+-- local keys = { "x", "c", "C", "s", "S" }
+--
+-- for _, key in ipairs(keys) do
+--   vim.keymap.set("n", key, '"_' .. key, { noremap = true, silent = true })
+-- end
+--
+-- -- Also for visual mode
+-- for _, key in ipairs({ "x", "d", "c" }) do
+--   vim.keymap.set("v", key, '"_' .. key, { noremap = true, silent = true })
+-- end
 
-for _, key in ipairs(keys) do
-  vim.keymap.set("n", key, '"_' .. key, { noremap = true, silent = true })
-end
-
--- Also for visual mode
-for _, key in ipairs({ "x", "d", "c" }) do
-  vim.keymap.set("v", key, '"_' .. key, { noremap = true, silent = true })
-end
+vim.keymap.set("n", "<leader>vg", ":VimBeGood<CR>", { desc = "🕹️ Vim Practice Game" })
+vim.keymap.set("n", "<leader>se", ":e ~/scratch.txt <CR>", { desc = "Open a persisant buffer." })

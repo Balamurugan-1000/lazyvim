@@ -9,7 +9,7 @@
 
 -- ~/.config/nvim/lua/config/autocmds.lua
 
-vim.g.diagnostics_hover_enabled = true
+vim.g.diagnostics_hover_enabled = false
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
