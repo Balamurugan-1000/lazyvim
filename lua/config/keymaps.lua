@@ -6,18 +6,6 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- 🔁 Restart LSP and reload buffer
-map("n", "<leader>lR", function()
-  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-  for _, client in ipairs(clients) do
-    vim.lsp.buf_detach_client(0, client.id)
-  end
-  vim.cmd("edit")
-  vim.defer_fn(function()
-    vim.cmd("LspRestart")
-  end, 100)
-end, vim.tbl_extend("force", opts, { desc = "LSP Restart + Reload Buffer" }))
-
 -- 🔃 Refresh diagnostics and open quickfix
 map("n", "<leader>lD", function()
   vim.diagnostic.reset()
@@ -25,6 +13,7 @@ map("n", "<leader>lD", function()
   vim.cmd("copen")
 end, vim.tbl_extend("force", opts, { desc = "Refresh Diagnostics + Show Quickfix" }))
 
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- 🌳 Reattach Treesitter highlight
 map("n", "<leader>lt", function()
   vim.cmd("TSBufDisable highlight")

@@ -2,25 +2,24 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = false },
-    explorer = { enabled = true },
+    dashboard = { enabled = true },
+    explorer = {
+      enabled = true,
+      keys = {},
+    },
     indent = { enabled = true },
     input = {
       enabled = true,
-      win_opts = {
-        row = vim.o.lines - 4, -- place 4 lines from the bottom
-      },
     },
     picker = {
       enabled = true,
-      backend = "telescope", -- 👈 USE TELESCOPE UI
+      backend = "telescope",
       sources = {
         explorer = {
-          -- hidden = true, -- 👈 show hidden dotfiles
-          -- ignored = true, -- 👈 show .gitignored files
+          -- hidden = true,
+          -- ignored = true,
         },
       },
     },
@@ -30,5 +29,21 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+  },
+  keys = {
+    {
+      "<leader>e",
+      function()
+        require("snacks.picker").explorer()
+      end,
+      desc = "Snacks Explorer (root dir)",
+    },
+    {
+      "<leader>E",
+      function()
+        require("snacks.picker").explorer({ cwd = vim.fn.getcwd() })
+      end,
+      desc = "Snacks Explorer (cwd)",
+    },
   },
 }

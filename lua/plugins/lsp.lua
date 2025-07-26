@@ -22,15 +22,15 @@ return {
 
           filetypes = { "html", "htmldjango", "django-html" },
         },
-        emmet_ls = {
-          filetypes = {
-            "html",
-            "htmldjango",
-            "django-html",
-            "css",
-            "javascript",
-          },
-        },
+        -- emmet_ls = {
+        --   filetypes = {
+        --     "html",
+        --     "htmldjango",
+        --     "django-html",
+        --     "css",
+        --     "javascript",
+        --   },
+        -- },
       },
 
       setup = {
@@ -44,7 +44,10 @@ return {
       ensure_installed = {
         "pyright",
         "ruff",
-        "emmet-ls",
+        "html-lsp",
+        "djlint",
+        "django-template-lsp",
+        -- "emmet-ls",
       },
     },
   },
