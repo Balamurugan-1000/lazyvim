@@ -5,7 +5,9 @@
 
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-
+vim.keymap.set("n", "<leader>pp", function()
+  require("pets").toggle()
+end, { desc = "Toggle Pet" })
 -- 🔃 Refresh diagnostics and open quickfix
 map("n", "<leader>lD", function()
   vim.diagnostic.reset()
