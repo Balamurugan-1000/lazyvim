@@ -12,21 +12,22 @@ return {
     indent = { enabled = true },
     input = {
       enabled = true,
+      backend = "telescope",
     },
     picker = {
-      enabled = true,
+      enabled = false,
       backend = "telescope",
       sources = {
         explorer = {
-          -- hidden = true,
-          -- ignored = true,
+          hidden = true,
+          ignored = true,
         },
       },
     },
     notifier = { enabled = false },
     quickfile = { enabled = true },
     scope = { enabled = true },
-    scroll = { enabled = true },
+    scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },

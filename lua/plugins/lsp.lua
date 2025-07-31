@@ -15,27 +15,15 @@ return {
           },
         },
 
-        -- Ruff for linting (fast and Django-aware)
         ruff = {},
 
         html = {
 
           filetypes = { "html", "htmldjango", "django-html" },
         },
-        -- emmet_ls = {
-        --   filetypes = {
-        --     "html",
-        --     "htmldjango",
-        --     "django-html",
-        --     "css",
-        --     "javascript",
-        --   },
-        -- },
       },
 
-      setup = {
-        -- Optional: Custom init if needed
-      },
+      setup = {},
     },
   },
   {
@@ -47,7 +35,6 @@ return {
         "html-lsp",
         "djlint",
         "django-template-lsp",
-        -- "emmet-ls",
       },
     },
   },
@@ -58,7 +45,6 @@ return {
         "python",
         "html",
         "css",
-        "javascript",
         "json",
       },
     },

@@ -1,5 +1,4 @@
 return {
-  -- 🔍 Telescope core
   {
     "nvim-telescope/telescope.nvim",
     version = false,
@@ -56,10 +55,6 @@ return {
       return vim.fn.executable("make") == 1
     end,
   },
-
-  -- 📁 File browser
-
-  -- 🔂 Undo tree powered by Telescope
   {
     "debugloop/telescope-undo.nvim",
     config = function()
