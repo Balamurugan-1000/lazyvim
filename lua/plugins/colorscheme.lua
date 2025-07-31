@@ -41,4 +41,8 @@ return {
   },
 
   { "shaunsingh/nord.nvim" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
 }

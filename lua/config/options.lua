@@ -20,3 +20,5 @@ vim.filetype.add({
     [".*/templates/.+%.html"] = "htmldjango", -- fallback for deeper nesting
   },
 })
+
+vim.o.background = "dark" -- or "light" for light mode

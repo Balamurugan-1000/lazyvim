@@ -9,7 +9,6 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      -- 🗂 Files & Search
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep (Live)" },
       { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find Word Under Cursor" },

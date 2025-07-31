@@ -26,7 +26,7 @@ return {
         enabled = true,
         silent = true,
         opts = {
-          border = "rounded", -- ✅ Add border to LSP hover
+          border = "rounded",
         },
       },
       signature = {

@@ -10,10 +10,9 @@ return {
   },
   dependencies = {
     "rafamadriz/friendly-snippets",
-    -- add blink.compat to dependencies
     {
       "saghen/blink.compat",
-      optional = true, -- make optional so it's only enabled if any extras need it
+      optional = true,
       opts = {},
       version = not vim.g.lazyvim_blink_main and "*",
     },
@@ -100,26 +99,8 @@ return {
       end
     end
 
-    -- -- add ai_accept to <Tab> key
-    -- if not opts.keymap["<Tab>"] then
-    --   if opts.keymap.preset == "super-tab" then -- super-tab
-    --     opts.keymap["<Tab>"] = {
-    --       require("blink.cmp.keymap.presets")["super-tab"]["<Tab>"][1],
-    --       LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-    --       "fallback",
-    --     }
-    --   else -- other presets
-    --     opts.keymap["<Tab>"] = {
-    --       LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-    --       "fallback",
-    --     }
-    --   end
-    -- end
-    --
-    -- Unset custom prop to pass blink.cmp validation
     opts.sources.compat = nil
 
-    -- check if we need to override symbol kinds
     for _, provider in pairs(opts.sources.providers or {}) do
       ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
       if provider.kind then
@@ -143,7 +124,6 @@ return {
           return items
         end
 
-        -- Unset custom prop to pass blink.cmp validation
         provider.kind = nil
       end
     end

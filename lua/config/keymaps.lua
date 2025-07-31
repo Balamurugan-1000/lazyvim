@@ -127,8 +127,8 @@ vim.keymap.set("n", "<leader>bu", function()
   require("util.buffer_history").reopen_last_buffer()
 end, { desc = "Reopen Last Closed Buffer" })
 
--- -- Don't yank with x, c, C, s, S, d, D
--- local keys = { "x", "c", "C", "s", "S" }
+-- -- -- Don't yank with x, c, C, s, S, d, D
+-- local keys = { "x", "c", "C", "s", "S", "d", "D" }
 --
 -- for _, key in ipairs(keys) do
 --   vim.keymap.set("n", key, '"_' .. key, { noremap = true, silent = true })
@@ -138,6 +138,4 @@ end, { desc = "Reopen Last Closed Buffer" })
 -- for _, key in ipairs({ "x", "d", "c" }) do
 --   vim.keymap.set("v", key, '"_' .. key, { noremap = true, silent = true })
 -- end
-
-vim.keymap.set("n", "<leader>vg", ":VimBeGood<CR>", { desc = "🕹️ Vim Practice Game" })
 vim.keymap.set("n", "<leader>se", ":e ~/scratch.txt <CR>", { desc = "Open a persisant buffer." })
