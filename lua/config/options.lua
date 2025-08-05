@@ -1,7 +1,7 @@
 vim.g.autoformat = true
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.laststatus = 0
 vim.o.list = false
 vim.opt.listchars = {}
