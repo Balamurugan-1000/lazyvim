@@ -68,51 +68,51 @@ vim.keymap.set("n", "<leader>uj", function()
 end, { desc = "Toggle diagnostics hover on cursor" })
 
 -- Lspsaga Keymaps
--- local saga = require("lspsaga")
---
--- -- Hover Doc
--- map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover Documentation" })
---
--- -- Rename
--- map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "Rename Symbol" })
---
--- -- Peek definition (opens in floating window)
--- map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek Definition" })
---
--- -- Go to definition (in-place)
--- map("n", "gD", "<cmd>Lspsaga goto_definition<CR>", { desc = "Go to Definition" })
---
--- -- Finder (references/definitions/implementations)
--- map("n", "<leader>sf", "<cmd>Lspsaga finder<CR>", { desc = "LSP Finder" })
---
--- -- Outline
--- map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "Toggle Outline" })
---
--- -- Call hierarchy (incoming/outgoing calls)
--- map("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming Calls" })
--- map("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing Calls" })
---
--- -- Diagnostics
--- map("n", "<leader>cd", "<cmd>Lspsaga show_buf_diagnostics<CR>", { desc = "Buffer Diagnostics" })
--- map("n", "<leader>wd", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "Workspace Diagnostics" })
--- map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Previous Diagnostic" })
--- map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Next Diagnostic" })
---
--- -- Code action
--- map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Code Action" })
---
--- -- Terminal toggle (if using Lspsaga term)
--- map("n", "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", { desc = "Toggle Terminal" })
---
--- --  Jump to errors
---
--- map("n", "[e", function()
---   require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
--- end, { desc = "Previous Error" })
---
--- map("n", "]e", function()
---   require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
--- end, { desc = "Next Error" })
+local saga = require("lspsaga")
+
+-- Hover Doc
+map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover Documentation" })
+
+-- Rename
+map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "Rename Symbol" })
+
+-- Peek definition (opens in floating window)
+map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek Definition" })
+
+-- Go to definition (in-place)
+map("n", "gD", "<cmd>Lspsaga goto_definition<CR>", { desc = "Go to Definition" })
+
+-- Finder (references/definitions/implementations)
+map("n", "<leader>sf", "<cmd>Lspsaga finder<CR>", { desc = "LSP Finder" })
+
+-- Outline
+map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "Toggle Outline" })
+
+-- Call hierarchy (incoming/outgoing calls)
+map("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", { desc = "Incoming Calls" })
+map("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "Outgoing Calls" })
+
+-- Diagnostics
+map("n", "<leader>cd", "<cmd>Lspsaga show_buf_diagnostics<CR>", { desc = "Buffer Diagnostics" })
+map("n", "<leader>wd", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { desc = "Workspace Diagnostics" })
+map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Previous Diagnostic" })
+map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Next Diagnostic" })
+
+-- Code action
+map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Code Action" })
+
+-- Terminal toggle (if using Lspsaga term)
+map("n", "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", { desc = "Toggle Terminal" })
+
+--  Jump to errors
+
+map("n", "[e", function()
+  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Previous Error" })
+
+map("n", "]e", function()
+  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Next Error" })
 --
 -- Track closed buffer before deleting
 local bufremove = require("mini.bufremove")
@@ -139,3 +139,35 @@ end, { desc = "Reopen Last Closed Buffer" })
 --   vim.keymap.set("v", key, '"_' .. key, { noremap = true, silent = true })
 -- end
 vim.keymap.set("n", "<leader>se", ":e ~/scratch.txt <CR>", { desc = "Open a persisant buffer." })
+
+function ToggleDiagnostics()
+  local enabled = false
+  if vim.diagnostic.is_enabled then
+    enabled = vim.diagnostic.is_enabled()
+  elseif vim.diagnostic.is_disabled then
+    enabled = not vim.diagnostic.is_disabled()
+  end
+
+  if vim.fn.has("nvim-0.10") == 0 then
+    if not enabled then
+      pcall(vim.diagnostic.enable)
+    else
+      pcall(vim.diagnostic.disable)
+    end
+  else
+    vim.diagnostic.enable(not enabled)
+  end
+
+  print("Diagnostics " .. (enabled and "disabled" or "enabled"))
+end
+
+vim.keymap.set("n", "<leader>uB", ToggleDiagnostics, { desc = "Toggle LSP diagnostics" })
+
+vim.keymap.set("n", "<leader>um", "<CMD>lua require('render-markdown').enable()<CR>", { desc = "ON Markdown Renderer" })
+
+vim.keymap.set(
+  "n",
+  "<leader>uM",
+  "<CMD>lua require('render-markdown').disable()<CR>",
+  { desc = "OFF Markdown Renderer" }
+)
