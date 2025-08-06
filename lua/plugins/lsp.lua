@@ -23,7 +23,14 @@ return {
         },
       },
 
-      setup = {},
+      setup = {
+        html = function(_, opts)
+          opts.on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+          end
+          return false -- allow default setup to continue
+        end,
+      },
     },
   },
   {
@@ -44,9 +51,12 @@ return {
       ensure_installed = {
         "python",
         "html",
+        "htmldjango",
         "css",
         "json",
       },
+      highlight = { enable = true },
+      indent = { enable = true },
     },
   },
 }

@@ -42,9 +42,20 @@ return {
     {
       "<leader>E",
       function()
-        require("snacks.picker").explorer({ cwd = vim.fn.getcwd() })
+        local file = vim.api.nvim_buf_get_name(0)
+        local dir = vim.fn.fnamemodify(file, ":h")
+        require("snacks.picker").explorer({ cwd = dir }) -- ✅ use cwd instead of cd
       end,
-      desc = "Snacks Explorer (cwd)",
+      desc = "Snacks Explorer (file's dir)",
+    },
+
+    {
+      "<leader>ce",
+      function()
+        local dir = "~/.config/nvim/"
+        require("snacks.picker").explorer({ cwd = dir }) -- ✅ use cwd instead of cd
+      end,
+      desc = "Snacks Explorer (file's dir)",
     },
   },
 }

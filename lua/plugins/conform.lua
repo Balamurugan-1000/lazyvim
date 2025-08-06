@@ -1,14 +1,20 @@
 -- plugins/conform.lua
 return {
   "stevearc/conform.nvim",
+  enabled = true,
   opts = {
     formatters_by_ft = {
-      htmldjango = { "djlint" },
-      html = { "djlint" },
+      python = { "black" },
+      htmldjango = {},
+      html = {},
     },
     formatters = {
-      djlint = {
-        prepend_args = { "--indent", "2" },
+      black = {
+        prepend_args = {
+          "--fast", -- optional, speeds up formatting
+          "--target-version",
+          "py311", -- ✅ set a valid version you use
+        },
       },
     },
   },
