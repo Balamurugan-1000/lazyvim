@@ -7,9 +7,6 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     cmd = "Telescope",
-    mappings = {
-      n = { ["<esc>"] = require("telescope.actions").close },
-    },
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep (Live)" },
@@ -32,12 +29,18 @@ return {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo History" },
     },
     config = function()
+      local actions = require("telescope.actions")
       require("telescope").setup({
         defaults = {
           layout_strategy = "horizontal",
           sorting_strategy = "descending",
           layout_config = {
             prompt_position = "bottom",
+          },
+          mappings = {
+            n = {
+              ["<esc>"] = actions.close,
+            },
           },
         },
       })
