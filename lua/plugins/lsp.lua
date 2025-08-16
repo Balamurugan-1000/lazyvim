@@ -18,17 +18,24 @@ return {
         ruff = {},
 
         html = {
-
           filetypes = { "html", "htmldjango", "django-html" },
         },
       },
 
       setup = {
         html = function(_, opts)
-          opts.on_attach = function(client)
+          local on_attach = opts.on_attach
+          opts.on_attach = function(client, bufnr)
+            -- disable formatting since you’ll likely use prettier/null-ls
             client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+
+            -- call original on_attach if present
+            if on_attach then
+              on_attach(client, bufnr)
+            end
           end
-          return false -- allow default setup to continue
+          return false -- let default setup continue
         end,
       },
     },
@@ -43,20 +50,6 @@ return {
         "djlint",
         "django-template-lsp",
       },
-    },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "python",
-        "html",
-        "htmldjango",
-        "css",
-        "json",
-      },
-      highlight = { enable = true },
-      indent = { enable = true },
     },
   },
 }

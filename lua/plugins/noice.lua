@@ -1,11 +1,11 @@
 return {
   "folke/noice.nvim",
+  enabled = true,
   event = "VeryLazy",
   opts = {
     cmdline = {
       enabled = true,
       view = "cmdline",
-      opts = {},
       format = {
         cmdline = { pattern = "^:", icon = "⚡", lang = "vim" },
         search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
@@ -25,26 +25,16 @@ return {
       hover = {
         enabled = true,
         silent = true,
-        opts = {
-          border = "rounded",
-        },
+        opts = { border = "rounded" },
       },
       signature = {
         enabled = true,
-        auto_open = {
-          enabled = true,
-          trigger = true,
-          luasnip = true,
-        },
-        opts = {
-          border = "rounded", -- ✅ Add border to signature help
-        },
+        auto_open = { enabled = true, trigger = true, luasnip = true },
+        opts = { border = "rounded" },
       },
       documentation = {
-        view = "hover", -- or "popup"
-        opts = {
-          border = "rounded", -- ✅ Add border to documentation popup
-        },
+        view = "hover",
+        opts = { border = "rounded" },
       },
     },
   },
