@@ -54,7 +54,7 @@ return {
               info = " ",
               hint = " ",
             },
-            always_visible = false,
+            always_visible = true,
           },
           { "filetype", icon_only = true },
           { "fileformat" },

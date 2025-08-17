@@ -21,6 +21,9 @@ return {
       },
     },
 
+    popupmenu = {
+      enabled = false,
+    },
     lsp = {
       hover = {
         enabled = true,
