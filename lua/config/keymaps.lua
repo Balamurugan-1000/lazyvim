@@ -14,3 +14,9 @@ map("i", "jj", "<ESC>", { desc = "To normal mode", noremap = true, silent = true
 map("n", "x", '"_x', { noremap = true, silent = true })
 map("v", "x", '"_x', { noremap = true, silent = true })
 map({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
+map("n", "<leader>uj", function()
+  vim.g.diagnostics_hover_enabled = not vim.g.diagnostics_hover_enabled
+  local msg = vim.g.diagnostics_hover_enabled and "Enabled" or "Disabled"
+  vim.notify("Diagnostics hover: " .. msg, vim.log.levels.INFO, { title = "LSP Hover" })
+end, { desc = "Toggle diagnostics hover on cursor" })
+
