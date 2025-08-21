@@ -92,8 +92,12 @@ return {
     },
     cmdline = {
       enabled = true,
-      keymap = { preset = "enter" },
-      completion = { menu = { auto_show = true } },
+      keymap = { preset = "inherit" },
+      completion = { menu = { auto_show = true } ,list={
+        selection = {
+          preselect = false
+        }
+      }},
     },
 
     keymap = {

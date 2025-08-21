@@ -8,7 +8,6 @@ vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 vim.g.mapleader = " "
 vim.opt.swapfile = false
-
 -- Navigate vim panes better
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
@@ -23,3 +22,5 @@ vim.filetype.add({
     [".*/templates/.+%.html"] = "htmldjango", -- fallback for deeper nesting
   },
 })
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", fg = "#f8f8f2" })  -- brighter text
+vim.api.nvim_set_hl(0, "Comment", { fg = "#8aff80", italic = true })  -- neon green comments

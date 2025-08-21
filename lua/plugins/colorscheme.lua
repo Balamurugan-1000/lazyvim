@@ -23,8 +23,8 @@ return {
       plugins = {
         all = true,
         auto = true,
-      }
-    }
+      },
+    },
   },
 
   {
@@ -42,8 +42,41 @@ return {
     config = function(_, opts)
       require("gruvbox").setup(opts)
       vim.o.background = "dark"
-      vim.cmd.colorscheme("gruvbox")
     end,
   },
-}
 
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
+  }, -- Using Lazy
+  {
+    "rebelot/kanagawa.nvim",
+  },
+  {
+    "navarasu/onedark.nvim",
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("onedark").setup({
+        style = "darker",
+      })
+      -- Enable theme
+      require("onedark").load()
+    end,
+  },
+  {
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Gruvbox Material settings 🌌
+      vim.g.gruvbox_material_background = 'hard'  -- set contrast
+      vim.g.gruvbox_material_enable_italic = true
+      vim.cmd.colorscheme('tokyonight-night')
+    end
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+    },
+  },
+}
