@@ -19,29 +19,14 @@ return {
         ]],
       },
     },
-    explorer = {
-      enabled = false,
-      keys = {},
-    },
+ explorer = { enabled = true },
     indent = { enabled = true },
-    input = {
-      enabled = true,
-      backend = "telescope",
-    },
-    picker = {
-      enabled = false,
-      backend = "telescope",
-      sources = {
-        explorer = {
-          hidden = true,
-          ignored = true,
-        },
-      },
-    },
+    input = { enabled = true },
+    picker = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
-    scroll = { enabled = false },
+    scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },

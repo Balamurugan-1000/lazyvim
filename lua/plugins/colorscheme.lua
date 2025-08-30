@@ -71,7 +71,6 @@ return {
       -- Gruvbox Material settings 🌌
       vim.g.gruvbox_material_background = 'hard'  -- set contrast
       vim.g.gruvbox_material_enable_italic = true
-      vim.cmd.colorscheme('tokyonight-night')
     end
   },
   {
@@ -79,4 +78,8 @@ return {
     opts = {
     },
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 , config = function ()
+  vim.cmd.colorscheme("catppuccin")
+end
+  }
 }
