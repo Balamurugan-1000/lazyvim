@@ -1,5 +1,5 @@
 return {
-  -- Tokyonight (active)
+  -- ✅ Active theme
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -12,74 +12,48 @@ return {
       styles = {
         comments = { italic = true },
         keywords = { italic = true },
-        functions = {},
-        variables = {},
-        sidebars = "transparent",
-        floats = "transparent",
       },
       day_brightness = 1.8,
       dim_inactive = false,
       lualine_bold = true,
-      plugins = {
-        all = true,
-        auto = true,
-      },
-    },
-  },
-
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-  },
-
-  {
-    "ellisonleao/gruvbox.nvim",
-    priority = 1000,
-    opts = {
-      terminal_colors = true,
-      contrast = "hard",
     },
     config = function(_, opts)
-      require("gruvbox").setup(opts)
-      vim.o.background = "dark"
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme("tokyonight")
+      
+      -- Apply subtle transparency (around 10–15%)
+      local alpha = 0.90 -- tweak between 0.85–0.95 for your liking
+      local function blend(color)
+        local hex = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(color)), "bg#")
+        if hex == "" then return end
+        vim.api.nvim_set_hl(0, color, { bg = "none" })
+      end
+
+      -- Transparent key UI groups
+      blend("Normal")
+      blend("NormalNC")
+      blend("NormalFloat")
+      blend("SignColumn")
+      blend("VertSplit")
+      blend("StatusLine")
+      blend("StatusLineNC")
+      blend("Pmenu")
+      blend("TabLine")
+      blend("TabLineFill")
+      blend("TabLineSel")
     end,
   },
 
-  {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
-  }, -- Using Lazy
-  {
-    "rebelot/kanagawa.nvim",
-  },
-  {
-    "navarasu/onedark.nvim",
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require("onedark").setup({
-        style = "darker",
-      })
-      -- Enable theme
-      require("onedark").load()
-    end,
-  },
-  {
-    'sainnhe/gruvbox-material',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- Gruvbox Material settings 🌌
-      vim.g.gruvbox_material_background = 'hard'  -- set contrast
-      vim.g.gruvbox_material_enable_italic = true
-    end
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-    },
-  },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 , config = function ()
-  vim.cmd.colorscheme("catppuccin")
-end
-  }
+  -- ✅ Optional installed themes (not loaded unless you call :colorscheme manually)
+  { "rose-pine/neovim", name = "rose-pine", lazy = true },
+  { "ellisonleao/gruvbox.nvim", lazy = true },
+  { "olimorris/onedarkpro.nvim", lazy = true },
+  { "rebelot/kanagawa.nvim", lazy = true },
+  { "navarasu/onedark.nvim", lazy = true },
+  { "sainnhe/gruvbox-material", lazy = true },
+  { "catppuccin/nvim", name = "catppuccin", lazy = true },
+
+  -- Keep LazyVim config last
+  { "LazyVim/LazyVim", opts = {} },
 }
+

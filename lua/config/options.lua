@@ -24,3 +24,4 @@ vim.filetype.add({
 })
 vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", fg = "#f8f8f2" })  -- brighter text
 vim.api.nvim_set_hl(0, "Comment", { fg = "#8aff80", italic = true })  -- neon green comments
+
